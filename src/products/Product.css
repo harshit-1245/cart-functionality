@@ -1,0 +1,39 @@
+/* Default styles for product box */
+.product-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    margin: 10px;
+    display: inline-block;
+}
+
+.product-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-box h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.product-box p {
+    margin: 5px 0;
+}
+
+.product-box button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Responsive styles for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+    .product-box {
+        width: 100%; /* Adjust the width to fill the available space */
+        margin: 10px 0; /* Remove horizontal margin for stacking */
+    }
+}
