@@ -2,26 +2,31 @@ import React, { useEffect, useState, createContext } from 'react';
 
 export const ShopContext = createContext(null);
 
+const getDefaultCart = () => {
+  let cart = {};
+  for (let i = 0; i < 23; i++) {
+    cart[i] = 0;
+  }
+  return cart;
+};
+
+
+
+
 const ShopContextProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+const [cartItem,setCartItem]=useState(getDefaultCart())
+  
+const addToCart=(itemId)=>{
+  setCartItem((prev)=>({...prev,[itemId]:prev[itemId]+1}));
+}
 
-  useEffect(() => {
-    getProducts();
-  }, []);
+const removeCart=(itemId)=>{
+  setCartItem((prev)=>({...prev,[itemId]:prev[itemId]-1}))
+}
 
-  const getProducts = () => {
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
-      });
-  };
 
   return (
-    <ShopContext.Provider value={products}>
+    <ShopContext.Provider value={{ addToCart, removeCart }}>
       {children}
     </ShopContext.Provider>
   );
